@@ -1,0 +1,319 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #0f172a;
+    color: #e5e7eb;
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+header {
+    background: linear-gradient(135deg, #1e3a8a, #7dd3fc);
+    padding: 2rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    background-image: url('https://images.pexels.com/photos/943907/pexels-photo-943907.jpeg?auto=compress&cs=tinysrgb&w=1200');
+    background-size: cover;
+    background-position: center;
+}
+header h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+nav select {
+    background: #1e40af;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+nav select:hover {
+    background: #1e3a8a;
+}
+nav a {
+    color: #ffffff;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+nav a:hover {
+    transform: scale(1.2);
+    color: #ffd700;
+}
+.hero {
+    position: relative;
+    height: 80vh;
+    background: url('https://images.pexels.com/photos/943907/pexels-photo-943907.jpeg?auto=compress&cs=tinysrgb&w=1200') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+    animation: heroFade 3s ease-in;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.4));
+    z-index: 1;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: 1rem;
+}
+.hero h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+}
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+#hit-counter {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+@keyframes heroFade {
+    from { opacity: 0; transform: scale(1.1); }
+    to { opacity: 1; transform: scale(1); }
+}
+.bio, .gallery, .contact {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+.bio h2, .gallery h2, .contact h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #3b82f6;
+    position: relative;
+}
+.bio h2::after, .gallery h2::after, .contact h2::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 5px;
+    background: #ffd700;
+    margin: 0.5rem auto;
+    border-radius: 2px;
+}
+.bio p {
+    background: rgba(255,255,255,0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    animation: slideIn 1s ease-out;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+.gallery-item {
+    position: relative;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+}
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+    opacity: 0;
+    animation: imageFade 0.5s forwards;
+}
+@keyframes imageFade {
+    to { opacity: 1; }
+}
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+.gallery-item .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    color: #ffffff;
+    padding: 0.8rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    font-size: 0.9rem;
+}
+.gallery-item:hover .caption {
+    opacity: 1;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInModal 0.4s ease;
+}
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.modal-content {
+    max-width: 85%;
+    max-height: 85vh;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+.modal-content img {
+    max-width: 100%;
+    max-height: 55vh;
+    display: block;
+    margin: 0 auto;
+}
+.modal-content p {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.modal-close:hover {
+    background: #1e40af;
+}
+.contact form {
+    max-width: 700px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+.contact input, .contact textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 2px solid #3b82f6;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.05);
+    color: #ffffff;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+.contact input:focus, .contact textarea:focus {
+    border-color: #ffd700;
+    background: rgba(255,255,255,0.1);
+    outline: none;
+}
+.contact button {
+    background: #1e3a8a;
+    color: #ffffff;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+.contact button:hover {
+    background: #ffd700;
+    color: #1a1a1a;
+    transform: scale(1.05);
+}
+footer {
+    background: #1e3a8a;
+    color: #ffffff;
+    text-align: center;
+    center;
+    padding-bottom: 1.5rem;
+    font-size: 1rem;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 2.4rem; }
+    .hero { height: 60vh; }
+    .hero-content h2 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
+    .bio h2, .gallery h2, .contact h2 { font-size: 1.8rem; }
+    .gallery-item img { height: 200px; }
+    nav { flex-wrap: wrap; gap: 1rem; }
+    nav a { font-size: 1.2rem; }
+    .contact form { padding: 1.5rem; }
+}
+@media (max-width: 480px) {
+    header h1 { font-size: 1.5rem; }
+    .hero h2 { font-size: 1.5rem; }
+    .hero p { font-size: 0.9rem; }
+    .bio p { font-size: 0.95rem; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .contact input, .contact textarea { font-size: 0.9rem; }
+    .contact button { font-size: 1rem; padding: 0.6rem 1.5rem; }
+}
